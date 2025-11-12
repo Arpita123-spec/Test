@@ -1,5 +1,5 @@
 <HTML>
-<H1>Marley Testing!!</H!>
+<H1>Marley Testing 123!!</H!>
 <script type='text/javascript'>
 	function initEmbeddedMessaging() {
 		try {
@@ -18,20 +18,22 @@
 		}
 	};
 
-	function checkAgentAvailability() {
-	    embedded_svc.liveAgentAPI.getAvailability('YOUR_BUTTON_ID', function(result) {
-	        if (result.isAvailable) {
-	            embedded_svc.settings.displayHelpButton = true; // Show button
-	        } else {
-	            embedded_svc.settings.displayHelpButton = false; // Hide button
-	        }
+	embeddedservice_bootstrap.checkMessagingAvailability().then(function(isAvailable) {
+	    if (isAvailable) {
+	        embeddedservice_bootstrap.settings.displayHelpButton = true; // Show button
+	    } else {
+	        embeddedservice_bootstrap.settings.displayHelpButton = false; // Hide button
+	    }
+	}).catch(function(error) {
+	    console.error('Error checking availability:', error);
+	});
+
+
+	setInterval(function() {
+	    embeddedservice_bootstrap.checkMessagingAvailability().then(function(isAvailable) {
+	        embeddedservice_bootstrap.settings.displayHelpButton = isAvailable;
 	    });
-	}
-	
-	setTimeout(checkAgentAvailability, 2000); // Delay to ensure init is complete
-
-	setInterval(checkAgentAvailability, 30000);
-
+	}, 30000); // Every 30 seconds
 
 </script>
 <script type='text/javascript' src='https://marley--chatdev.sandbox.my.site.com/ESWLiveChat1762429956325/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
