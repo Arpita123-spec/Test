@@ -1,6 +1,7 @@
 <HTML>
 <H1>Marley Testing 123!!</H!>
 <script type='text/javascript'>
+	
 	function initEmbeddedMessaging() {
 		try {
 			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
@@ -13,27 +14,36 @@
 					scrt2URL: 'https://marley--chatdev.sandbox.my.salesforce-scrt.com'
 				}
 			);
+
+			
+            // Check availability after init
+			setTimeout(checkAgentAvailability, 2000);
+
+            // Auto-refresh every 30 seconds
+            setInterval(checkAgentAvailability, 30000);
+
+			
 		} catch (err) {
 			console.error('Error loading Embedded Messaging: ', err);
 		}
+
+
+		function checkAgentAvailability() {
+            embeddedservice_bootstrap.checkMessagingAvailability()
+                .then(function(isAvailable) {
+                    if (isAvailable) {
+                        embeddedservice_bootstrap.settings.displayHelpButton = true;
+                    } else {
+                        embeddedservice_bootstrap.settings.displayHelpButton = false;
+                    }
+                })
+                .catch(function(error) {
+                    console.error('Error checking availability:', error);
+                });
+        }
+
+
 	};
-
-	embeddedservice_bootstrap.checkMessagingAvailability().then(function(isAvailable) {
-	    if (isAvailable) {
-	        embeddedservice_bootstrap.settings.displayHelpButton = true; // Show button
-	    } else {
-	        embeddedservice_bootstrap.settings.displayHelpButton = false; // Hide button
-	    }
-	}).catch(function(error) {
-	    console.error('Error checking availability:', error);
-	});
-
-
-	setInterval(function() {
-	    embeddedservice_bootstrap.checkMessagingAvailability().then(function(isAvailable) {
-	        embeddedservice_bootstrap.settings.displayHelpButton = isAvailable;
-	    });
-	}, 30000); // Every 30 seconds
 
 </script>
 <script type='text/javascript' src='https://marley--chatdev.sandbox.my.site.com/ESWLiveChat1762429956325/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
