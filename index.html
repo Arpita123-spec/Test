@@ -1,5 +1,5 @@
 <HTML>
-<H1>Marley Testing 123!!</H!>
+<H1>Marley!!</H!>
 <script type='text/javascript'>
 	
 	function initEmbeddedMessaging() {
@@ -14,35 +14,9 @@
 					scrt2URL: 'https://marley--chatdev.sandbox.my.salesforce-scrt.com'
 				}
 			);
-
-			
-            // Check availability after init
-			checkAgentAvailability();
-
-            // Auto-refresh every 30 seconds
-            setInterval(checkAgentAvailability, 30000);
-
-			
 		} catch (err) {
 			console.error('Error loading Embedded Messaging: ', err);
 		}
-
-
-		function checkAgentAvailability() {
-            embeddedservice_bootstrap.checkMessagingAvailability()
-                .then(function(isAvailable) {
-                    if (isAvailable) {
-                        embeddedservice_bootstrap.settings.displayHelpButton = true;
-                    } else {
-                        embeddedservice_bootstrap.settings.displayHelpButton = false;
-                    }
-                })
-                .catch(function(error) {
-                    console.error('Error checking availability:', error);
-                });
-        }
-
-
 	};
 
 </script>
