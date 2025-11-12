@@ -17,6 +17,22 @@
 			console.error('Error loading Embedded Messaging: ', err);
 		}
 	};
+	setTimeout(checkAgentAvailability, 2000); // Delay to ensure init is complete
+	
+	function checkAgentAvailability() {
+	    embedded_svc.liveAgentAPI.getAvailability('YOUR_BUTTON_ID', function(result) {
+	        if (result.isAvailable) {
+	            embedded_svc.settings.displayHelpButton = true; // Show button
+	        } else {
+	            embedded_svc.settings.displayHelpButton = false; // Hide button
+	        }
+	    });
+	}
+
+	
+// Call this after init
+
+
 </script>
 <script type='text/javascript' src='https://marley--chatdev.sandbox.my.site.com/ESWLiveChat1762429956325/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
   
