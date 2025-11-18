@@ -10,7 +10,36 @@
             margin: 0;
             padding: 0;
             background-color: #f2f2f2;
-            /* light grey background */
+        }
+
+        .scroll-banner {
+            width: 100%;
+            background-color: #4aa3ff;
+            /* New softer color */
+            color: white;
+            /* Text color changed for readability */
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 2px solid #000;
+            font-weight: bold;
+            padding: 10px 0;
+            font-size: 18px;
+        }
+
+        .scroll-banner span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scrollText 12s linear infinite;
+        }
+
+        @keyframes scrollText {
+            from {
+                transform: translateX(0%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
         }
 
         .container {
@@ -22,15 +51,6 @@
             border: 1px solid #ddd;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
             text-align: center;
-        }
-
-        .banner {
-            background-color: #ffcc00;
-            color: #000;
-            text-align: center;
-            padding: 12px;
-            font-weight: bold;
-            border-bottom: 2px solid #000;
         }
 
         h1 {
@@ -48,8 +68,8 @@
 
 <body>
 
-    <div class="banner">
-        ⚠️ This is a Production Dummy Website.
+    <div class="scroll-banner">
+        <span>⚠️ This is a Production Dummy Website. Testing & Demonstration Environment Only ⚠️</span>
     </div>
 
     <div class="container">
@@ -59,21 +79,21 @@
 
     <script type='text/javascript'>
         function initEmbeddedMessaging() {
-        try {
-            embeddedservice_bootstrap.settings.language = 'en_US';
+            try {
+                embeddedservice_bootstrap.settings.language = 'en_US';
 
-            embeddedservice_bootstrap.init(
-                '00DPu000009Sz1n',
-                'Live_Chat',
-                'https://marley--chatdev1.sandbox.my.site.com/ESWLiveChat1762933923972',
-                {
-                    scrt2URL: 'https://marley--chatdev1.sandbox.my.salesforce-scrt.com'
-                }
-            );
-        } catch (err) {
-            console.error('Error loading Embedded Messaging: ', err);
+                embeddedservice_bootstrap.init(
+                    '00DPu000009Sz1n',
+                    'Live_Chat',
+                    'https://marley--chatdev1.sandbox.my.site.com/ESWLiveChat1762933923972',
+                    {
+                        scrt2URL: 'https://marley--chatdev1.sandbox.my.salesforce-scrt.com'
+                    }
+                );
+            } catch (err) {
+                console.error('Error loading Embedded Messaging: ', err);
+            }
         }
-    }
     </script>
 
     <script type='text/javascript'
