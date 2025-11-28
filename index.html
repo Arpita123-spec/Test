@@ -15,9 +15,7 @@
         .scroll-banner {
             width: 100%;
             background-color: #4aa3ff;
-            /* New softer color */
             color: white;
-            /* Text color changed for readability */
             overflow: hidden;
             white-space: nowrap;
             border-bottom: 2px solid #000;
@@ -36,7 +34,6 @@
             from {
                 transform: translateX(0%);
             }
-
             to {
                 transform: translateX(-100%);
             }
@@ -80,7 +77,19 @@
     <script type='text/javascript'>
         function initEmbeddedMessaging() {
             try {
+
+                // Language
                 embeddedservice_bootstrap.settings.language = 'en_US';
+
+                // ---------- NEW INACTIVITY TIMEOUT SETTINGS ADDED ----------
+                embeddedservice_bootstrap.settings.enableInactivityTimeout = true;
+                embeddedservice_bootstrap.settings.inactivityTimeout = 240000; // 4 minutes
+
+                embeddedservice_bootstrap.onInactivityTimeout = function () {
+                    console.log('⚠️ User inactive for 4 minutes - trigger warning.');
+                    // You can integrate flow or transcript update here later
+                };
+                // -----------------------------------------------------------
 
                 embeddedservice_bootstrap.init(
                     '00DPu000009Sz1n',
