@@ -82,14 +82,7 @@
 
                 embeddedservice_bootstrap.settings.language = 'en_US';
 
-                // ---------- INACTIVITY TIMEOUT FOR TESTING (20 SECONDS) ----------
-                embeddedservice_bootstrap.settings.enableInactivityTimeout = true;
-                embeddedservice_bootstrap.settings.inactivityTimeout = 20000; // 20 seconds
-                embeddedservice_bootstrap.onInactivityTimeout = function () {
-                    console.log('⚠️ User inactive for 20 seconds - trigger warning.');
-                    alert("⚠️ Warning: You have been inactive for 20 seconds. This is a test message.");
-                };
-                // -------------------------------------------------------------------
+       
 
                 embeddedservice_bootstrap.init(
                     '00DPu000009Sz1n',   // Org ID
